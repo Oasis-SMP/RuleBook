@@ -1,0 +1,14 @@
+name: RuleBook
+main: net.charter.orion_pax.RuleBook.RuleBook
+version: Beta 1.0
+commands:
+  rules:
+    description: Oasis Rule Book
+    permission: rulebook.players
+    permission-message: You don't have permissions for <permission>!
+permissions:
+  rulebook.staff:
+    description: Staff commands
+  rulebook.players:
+    description: Default commands
+    default: true
