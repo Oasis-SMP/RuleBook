@@ -47,6 +47,7 @@ public class RuleBookCommandExecutor implements CommandExecutor
                 	{
                 		Player player = (Player) sender;
                 		plugin.GetNewRuleBook(player);
+                		player.sendMessage(ChatColor.GOLD + "Rulebook successfully copied!");
                 		return true;
                 	}
                 	if (args[0].equalsIgnoreCase("restore"))
@@ -63,6 +64,7 @@ public class RuleBookCommandExecutor implements CommandExecutor
                         	plugin.LoadRuleBook();
                         	plugin.CraftRuleBook(1);
                         	plugin.givebookmessage = ChatColor.GOLD + "You were given The Official "+ChatColor.BLUE + plugin.title +ChatColor.GOLD + " written by "+ ChatColor.GREEN + plugin.author;
+                        	sender.sendMessage(ChatColor.GOLD + "Rulebook successfully restored to default!");
                         	return true;
                         }
                 	}
@@ -73,7 +75,6 @@ public class RuleBookCommandExecutor implements CommandExecutor
                         plugin.LoadRuleBook();
                         plugin.CraftRuleBook(1);
                         plugin.saveConfig();
-                        plugin.getLogger().info("RuleBook config reloaded!");
                         sender.sendMessage(ChatColor.GOLD+"Rulebook config reloaded!");
                         return true;
                     }
@@ -149,6 +150,7 @@ public class RuleBookCommandExecutor implements CommandExecutor
 									}
                                 }
                                 plugin.givebook(target,plugin.totalbooks);
+                                sender.sendMessage(ChatColor.BLUE + target.getName() + ChatColor.GOLD + " has received " + plugin.totalbooks + " rulebook(s)!");
                                 return true;
                             }
                         }

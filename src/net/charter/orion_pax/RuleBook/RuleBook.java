@@ -19,7 +19,8 @@ public class RuleBook extends JavaPlugin implements Listener
     public static RuleBook plugin;
     String author; //These were giving you the NPE, you were trying to give null tags in a book.
     String title; //I edited the CraftRuleBook() method to prevent the NPE.
-    String[] pages; //You're welcome. Now, can you teach me how to do Github? I want to get into it. I'm so confused when doing it, though.
+    List<String> pages;
+    //String[] pages; //You're welcome. Now, can you teach me how to do Github? I want to get into it. I'm so confused when doing it, though.
     ItemStack book;
     String[] playerdatabase; //Watch it with setting things to null.
     String naughty = ChatColor.RED + "You have been a bad boy/girl! So here is another rulebook!"; //Moved so that
@@ -86,18 +87,7 @@ public class RuleBook extends JavaPlugin implements Listener
     }
 
     public void LoadRuleBook() {
-        int count = 0;
-        List<String> pagecount = this.getConfig().getStringList("pages");
-        for (String counting : pagecount) {
-            count++;
-        }
-        pages = new String[count];
-        count = 0;
-        List<String> pagecount2 = this.getConfig().getStringList("pages");
-        for (String page : pagecount2) {
-            pages[count] = page;
-            count++;
-        }
+        pages = this.getConfig().getStringList("pages");
         author = this.getConfig().getString("author");
         title = this.getConfig().getString("title");
     }
@@ -121,6 +111,8 @@ public class RuleBook extends JavaPlugin implements Listener
         }
 
         if (kickedplayer.contains(player.getName())) {
+        	player.sendMessage(ChatColor.DARK_RED + "Apparently you have been a bad bad Minecrafter...");
+        	player.sendMessage(ChatColor.DARK_RED + "So here is another rule book for you to read!");
             givebook(player, 1);
             kickedplayer.remove(player.getName());
         }
@@ -142,13 +134,7 @@ public class RuleBook extends JavaPlugin implements Listener
 			BookMeta meta = (BookMeta) player.getItemInHand().getItemMeta();
 			author = meta.getAuthor();
 			title = meta.getTitle();
-			pages = null;
-			getLogger().info(Integer.toString(meta.getPageCount()));
-			int test = meta.getPageCount() - 1;
-			for (int countme = 0; countme == test; countme++) {
-				pages[countme] = meta.getPage(countme + 1);
-				getLogger().info(meta.getPage(countme + 1));
-			}
+			pages = meta.getPages();
 			givebookmessage = ChatColor.GOLD + "You were given The Official "
 					+ ChatColor.BLUE + title + ChatColor.GOLD + " written by "
 					+ ChatColor.GREEN + author; //This class can grab it...
