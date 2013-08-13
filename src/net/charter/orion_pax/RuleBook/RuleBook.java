@@ -27,7 +27,7 @@ public class RuleBook extends JavaPlugin implements Listener
     String givebookmessage;
     String yourfull = ChatColor.GOLD + "Your inventory is full, rulebook was dropped on ground!"; //It didn't need to be in the onEnable method.
     ArrayList<String> kickedplayer = new ArrayList<String>(); //Always give an identifier for an ArrayList. It helps prevent errors.
-    boolean enablekick = true;
+    boolean enablekick = false;
     int totalbooks;
     
     @Override

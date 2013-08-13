@@ -52,7 +52,7 @@ public class RuleBookCommandExecutor implements CommandExecutor
                 	}
                 	if (args[0].equalsIgnoreCase("restore"))
                 	{
-                		File configFile = new File(Bukkit.getServer().getPluginManager().getPlugin("RuleBook").getDataFolder(), "config.yml");
+                		File configFile = new File(plugin.getDataFolder(), "config.yml");
                         if (configFile.exists()) {
                         	configFile.delete();
                         	plugin.saveDefaultConfig();
